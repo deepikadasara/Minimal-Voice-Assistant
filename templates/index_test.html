@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Assistant</title>
+</head>
+<body>
+    <h1>Welcome to the VirtuSense Voice Assistant App</h1>
+    <img src="/static/images/ai.jpg" alt="Descriptive text for the image" class="center-image">
+    <p>Click the button below to start the voice assistant session:</p>
+    <form id="assistant-form">
+        <button type="button" id="start-assistant">Start Voice Assistant</button>
+    </form>
+    <div id="response"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#start-assistant').click(function(){
+                // Hide the response div
+                $('#response').hide();
+                
+                // Make the AJAX request
+                $.get('/assistant', function(data){
+                    $('#response').text(data.response).show(); // Show response after receiving it
+                });
+            });
+        });
+    </script>
+</body>
+</html>
